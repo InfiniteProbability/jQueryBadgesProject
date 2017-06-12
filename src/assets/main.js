@@ -10,6 +10,9 @@ $(function() {
   function addCourses(courses) {
     var $badges = $('#badges');
 
+    courses=sortCourses(courses);
+
+
     courses.forEach(function(course){
       var $course = $('<div />', {
         'class':'course'
@@ -31,6 +34,16 @@ $(function() {
       }).appendTo($course);
 
     })
-  }
-  
+  };
+
+  function sortCourses(courses) {
+    courses.sort(function (a,b) {
+      if (a.title.toLowerCase < b.title.toLowerCase)
+        return -1;
+      if (a.title.toLowerCase > b.title.toLowerCase)
+        return 1;
+      return 0;
+    });
+    return courses;
+  };
 });
